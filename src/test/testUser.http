@@ -1,0 +1,33 @@
+###查询全部用户
+GET http://localhost:8081/users
+Accept: application/json
+
+###查询某个用户
+GET http://localhost:8081/users
+Accept: application/json
+
+###添加用户
+
+POST http://localhost:8081/users
+Content-Type: application/json
+
+{
+  "uname": "zxz",
+  "password": "2369",
+  "age": 100
+}
+
+###更新某个用户
+
+PUT http://localhost:8081/users
+Content-Type: application/json
+
+{
+"id":1,
+"uname": "zz",
+"password": "123",
+"age": 20
+}
+###删除某个用户
+DELETE http://localhost:8081/users/1
+Accept: application/json

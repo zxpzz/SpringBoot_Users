@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:mysql://8.142.84.217:3306/zxp
+    password: zxp2002
+    username: zxp
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: ALWAYS
+      schema-locations:
+          classpath:data\schema.sql
+
+      data-locations:
+        - classpath:data\data.sql
+server:
+  port: 8081
+
+mybatis:
+  config-location: classpath:mybatis-config.xml

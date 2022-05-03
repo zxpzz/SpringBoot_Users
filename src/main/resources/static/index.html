@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>hello</h1>
+<button id="findAll">查询所有</button>
+<button id="findOn">查询一个</button>
+<button id="add">添加一个</button>
+<button onclick="updata()">更新</button>
+<button onclick="deleBtn()">删除</button>
+
+
+<script>
+    let findAllBtn=document.querySelector('#findAll')
+    let url='http://localhost:8080/users'
+    let findOnBtn=document.querySelector("#findOn")
+    
+    let addB=document.querySelector("#add")
+
+    findAllBtn.onclick=function(){
+        fetch(url)
+        .then(resp=>resp.json())
+        .then(users=>console.log(users))
+    }
+
+    findOnBtn.onclick=function(){
+        let id=prompt("请输入要查询的id","")
+        fetch(url+"/"+id)
+        .then(resp=>resp.json())
+        .then(user=>console.log(user)) 
+    },
+
+    addB.onclick=function(){
+        let user={
+            uname:"zzz",
+            password:'123456',
+            age:20
+        }
+        fetch(url,{
+            method:'POST',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(user)
+        })
+        .then(resp=>resp.json())
+        .then(newUser=>console.log(newUser)) 
+    }
+
+
+    function updata(){
+        let id=prompt("请输入要更新的id","")
+        let user={id:id,uname:"zxz",password:"236",age:26}
+        fetch(url,{
+            method:'PUT',
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify(user)
+        }).then(resp=>resp.json())
+        .then(user=>console.log(user)) 
+    }
+   
+    function deleBtn(){
+        let id=prompt("请输入要删除的id","")
+        fetch(url+"/"+id,{method:'DELETE'})
+        .then(resp=>resp.json())
+        .then(user=>console.log(user)) 
+    
+    }
+
+</script>
+
+
+
+</body>
+</html>
